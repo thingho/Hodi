@@ -13,11 +13,11 @@
 <header>
     <div style="display: flex; margin-left:1300px;">
         <c:if test="${sessionId == null }">
-            <li><a onclick="loginBtn()" style="cursor:pointer;">로그인</a></li>
+            <li><a onclick="loginBtn()">로그인</a></li>
         </c:if>
         <c:if test="${sessionId != null }">
-            <li><a href="#">${sessionName}님 환영합니다!</a></li>
-            <li><a onclick="logoutBtn()" style="cursor:pointer;">로그아웃</a></li>
+            <li><a>${sessionName}님 환영합니다!</a></li>
+            <li><a onclick="logoutBtn()">로그아웃</a></li>
         </c:if>
     </div>
 </header>

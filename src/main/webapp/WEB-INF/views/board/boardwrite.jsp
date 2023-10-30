@@ -6,11 +6,13 @@
         <style>
             h1{text-align: center;}
             li{list-style-type : none; padding : 0 25px 0 0; display : flex;}
-            a{color: blue;}
-            input{width: 400px;}
+            form{text-align: -webkit-center;}
+            button,a{color: blue; cursor:pointer;}
+            input{width: 400px; height: 30px;}
+            textarea{width: 400px; height: 200px; resize: none;}
         </style>
-    </head>
-    <body>
+        <%--제이쿼리 추가--%>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script>
             function writeBtn(){
                 if("${sessionId}"== ""){
@@ -19,31 +21,26 @@
                     return false;
                 }
                 if($("#btitle").val() == ""){
-                    alert("제목을 입력해주셔야 합니다.");
-                    $("#bcontent").focus();
+                    alert("제목을 입력해주세요.");
+                    $("#btitle").focus();
                     return false;
                 }
                 if($("#bcontent").val() == ""){
-                    alert("내용을 입력해주셔야 합니다.");
+                    alert("내용을 입력해주세요.");
                     $("#bcontent").focus();
                     return false;
                 }
-                $("#write").submit();
+                $("#writeFrm").submit();
             }
-
-
-            function cancleBtn(){
-                location.href="/board/boardlist";
-            }
-
         </script>
-
-        <%--로그인 부분--%>
-        <%@ include file="../top.jsp" %>
+    </head>
+    <body>
+    <%--로그인 부분--%>
+    <%@ include file="../top.jsp" %>
         <hr>
         <h1>글쓰기</h1>
         <hr>
-        <form action="boardwrite" name="write" method="post" enctype="multipart/form-data">
+        <form action="/board/boardwrite" id="writeFrm" name="writeFrm" method="post" enctype="multipart/form-data">
             <table>
                 <colgroup>
                     <col width="15%">
@@ -58,7 +55,7 @@
                 <tr>
                     <th>그룹</th>
                     <td>${sessionGroup}
-                        <input type="hidden" name="group" value="${sessionGroup}">
+                        <input type="hidden" name="group_number" value="${sessionGroup}">
                     </td>
                 </tr>
                 <tr>
@@ -70,19 +67,19 @@
                 <tr>
                     <th>내용</th>
                     <td>
-                        <textarea name="bcontent" cols="60" rows="10" id="bcontent" placeholder="내용을 작성해주세요."></textarea>
+                        <textarea name="bcontent" id="bcontent" placeholder="내용을 작성해주세요."></textarea>
                     </td>
                 </tr>
                 <tr>
                     <th>이미지 등록</th>
                     <td>
-                        <input type="file" name="file" id="file">
+                        <input type="file" name="file">
                     </td>
                 </tr>
             </table>
             <hr>
-            <button type="button" class="write" id="write" onclick="writeBtn()">작성완료</button>
-            <button type="button" class="cancel" onclick="cancleBtn()">취소</button>
+            <button type="button" id="write" onclick="writeBtn()">작성완료</button>
+            <button type="button" class="cancel" onclick="location.href='/board/boardlist'">취소</button>
         </form>
     </body>
 </html>

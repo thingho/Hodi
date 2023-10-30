@@ -3,21 +3,26 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.demo.mapper.BoardMapper">
-    <select id="selectAll" resultType="com.java.demo.dto.BoardDto">
-        select * from board
+    <select id="selectAll" resultType="com.java.demo.dto.BoardDto" parameterType="map">
+        select * from board order by bno desc
         <!--<if test="category == 'all'">
-            where btitle like '%'||#{word}||'%' or name like '%'||#{word}||'%'
+            where btitle like concat('%',#{word},'%') or name like concat('%',#{word},'%')
         </if>
         <if test="category == 'btitle'">
-            where btitle like '%'||#{word}||'%'
+            where btitle like concat('%',#{word},'%')
         </if>
         <if test="category == 'name'">
-            where name like '%'||#{word}||'%'
+            where name like concat('%',#{word},'%')
         </if>-->
     </select>
 
     <select id="selectOne" resultType="com.java.demo.dto.BoardDto">
         select * from board where bno=#{bno}
     </select>
+
+    <insert id="insertOne">
+        insert into board (name, btitle, bcontent, bfile, group_number)
+        values (#{name}, #{btitle},#{bcontent}, #{bfile}, #{group_number});
+    </insert>
 
 </mapper>

@@ -9,6 +9,6 @@ public class ImageConfig implements WebMvcConfigurer {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("images/**")
-                .addResourceLocations("file:///c:/Images/");
+                .addResourceLocations("file:///c:/workspace/images/");
     }
 }

@@ -16,7 +16,6 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public HashMap<String, Object> selectAll(String category,String word){
-
         HashMap<String, Object> map = new HashMap<>();
         ArrayList<BoardDto> list = boardMapper.selectAll(category,word);
 
@@ -28,11 +27,19 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public HashMap<String, Object> selectOne(int bno){
-
         HashMap<String, Object> map = new HashMap<>();
 
         BoardDto bdto = boardMapper.selectOne(bno);
         map.put("bdto", bdto);
         return map;
+    }
+
+    @Override
+    public void insertOne(BoardDto bdto) {
+        boardMapper.insertOne(bdto);
+
+        System.out.println("이름 impl: "+bdto.getName());
+        System.out.println("내용 impl: "+bdto.getBcontent());
+        System.out.println("파일 impl: "+bdto.getBfile());
     }
 }

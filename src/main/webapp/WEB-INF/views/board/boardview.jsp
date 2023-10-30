@@ -5,12 +5,12 @@
         <title>게시글 상세페이지</title>
         <style>
             h1{text-align: center;}
-            table{width:1000px; margin-left:auto;margin-right:auto;}
+            table{width:900px; margin-left:auto;margin-right:auto;}
             table,th,td{border: 1px solid black; border-collapse: collapse;}
-            th,td{width:200px; height:60px;}
+            th,td{height:40px;}
             li{list-style-type : none; padding : 0 25px 0 0; display : flex;}
-            a{color: blue; list-style-type: none;}
-            input{width: 400px;}
+            a{color: blue; cursor:pointer;}
+            img{width: 400px; height: 500px;}
         </style>
     </head>
     <body>
@@ -50,6 +50,9 @@
         </tr>
         </c:if>
     </table>
-    <li><a href="/board/boardlist">게시판 목록</a></li>
+    <br>
+    <div style="margin-left:1300px;">
+        <button type="button" onclick="location.href='/board/boardlist'">게시판 목록</button>
+    </div>
     </body>
 </html>

@@ -1,5 +1,6 @@
 package com.java.demo.service;
 
+import com.java.demo.dto.BoardDto;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,4 +12,5 @@ public interface BoardService {
 
     HashMap<String,Object> selectOne(int bno);
 
+    void insertOne(BoardDto bdto);
 }

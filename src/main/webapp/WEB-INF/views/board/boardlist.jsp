@@ -7,13 +7,16 @@
             h1{text-align: center;}
             table{width:1000px; text-align: center; margin-left:auto;margin-right:auto;}
             table,th,td{border: 1px solid black; border-collapse: collapse;}
-            th,td,input{width:200px; height:40px;}
+            th,td,input{width:500px; height:40px;}
             button{width:60px;}
             select{width: 100px;}
             li{list-style-type: none; padding: 0 25px 0 0; display : flex;}
-            a{color: blue;}
+            button,a{color: blue; cursor:pointer;}
             form{display:inline-flex; place-content: center;}
+            .searchbar{text-align: center;}
         </style>
+        <%--제이쿼리 추가--%>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     </head>
     <body>
     <script>
@@ -25,10 +28,6 @@
             }
             search.submit();
         }
-
-        function writeBtn(){
-            location.href="/board/boardwrite";
-        }
     </script>
 
         <%--로그인 부분--%>
@@ -37,20 +36,19 @@
         <hr>
         <h1>게시판</h1>
         <br>
-
-        <div>
-            <form action="/board/boardlist" name="search" method="post">
-                <select name="category" id="category">
-                    <option value="all">전체</option>
-                    <option value="btitle">제목</option>
-                    <option value="name">작성자</option>
-                </select>
-                <div class="title">
-                    <input type="text" name="word" id="word" value="${word}" size="16" placeholder="검색어를 입력해주세요.">
-                </div>
-                <button type="button" onclick="searchBtn()">검색</button>
-            </form>
-        </div>
+    <div class="searchbar">
+        <form action="/board/boardlist" name="search" method="post">
+            <select name="category" id="category">
+                <option value="all">전체</option>
+                <option value="btitle">제목</option>
+                <option value="name">작성자</option>
+            </select>
+            <div>
+                <input type="text" name="word" id="word" value="${word}" placeholder="검색어를 입력해주세요.">
+            </div>
+            <button type="button" onclick="searchBtn()">검색</button>
+        </form>
+    </div>
 
         <table>
             <colgroup>
@@ -73,10 +71,10 @@
             <c:forEach var="board" items="${list}">
             <tr>
                 <td>${board.bno}</td>
-                <c:if test="${board.group_number == sessionGroup || sessionId == 'admin'}">
+                <c:if test="${sessionGroup == board.group_number || sessionGroup == 0 || board.group_number == 0}">
                     <td><a href="boardview?bno=${board.bno}&category=${category}&word=${word}">${board.btitle}</a></td>
                 </c:if>
-                <c:if test="${board.group_number != sessionGroup || board.group_number == null}">
+                <c:if test="${sessionGroup != 0 && sessionGroup != board.group_number && board.group_number != 0}">
                     <td>${board.btitle}</td>
                 </c:if>
                 <td>${board.name}</td>
@@ -93,8 +91,9 @@
         </table>
         <br>
         <div style="margin-left:1300px;">
-            <li><a onclick="writeBtn()" style="cursor:pointer;">글쓰기</a></li>
+            <button type="button" onclick="location.href='/board/boardwrite'">글쓰기</button>
         </div>
+    <br>
 
     </body>
 </html>
