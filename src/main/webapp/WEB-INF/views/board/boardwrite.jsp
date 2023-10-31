@@ -30,7 +30,7 @@
                     $("#bcontent").focus();
                     return false;
                 }
-                $("#writeFrm").submit();
+                writeFrm.submit();
             }
         </script>
     </head>
@@ -40,7 +40,7 @@
         <hr>
         <h1>글쓰기</h1>
         <hr>
-        <form action="/board/boardwrite" id="writeFrm" name="writeFrm" method="post" enctype="multipart/form-data">
+        <form action="/board/boardwrite" name="writeFrm" method="post" enctype="multipart/form-data">
             <table>
                 <colgroup>
                     <col width="15%">
@@ -78,7 +78,7 @@
                 </tr>
             </table>
             <hr>
-            <button type="button" id="write" onclick="writeBtn()">작성완료</button>
+            <button type="button" onclick="writeBtn()">작성완료</button>
             <button type="button" class="cancel" onclick="location.href='/board/boardlist'">취소</button>
         </form>
     </body>

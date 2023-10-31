@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.UUID;
 
 @Controller
 public class BoardController {
@@ -47,24 +48,19 @@ public class BoardController {
     }
 
     @PostMapping("/board/boardwrite")
-    public String boardwrite(BoardDto bdto, @RequestPart MultipartFile file) throws Exception {
+    public String boardwrite(BoardDto bdto, @RequestParam(value = "file" , required = false) MultipartFile file) throws Exception {
 
-        String filename = "";
+        String filename = null;
         if(!file.isEmpty()){
-            String origin_filename = file.getOriginalFilename();
-            UUID uuid = UUID.randomUUID();
-            filename = uuid+" "+origin_filename;
+            String original = file.getOriginalFilename();
+            String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy_MM_dd_HHmmss"));
+            filename = time+"_"+original;
             String uploadurl = "c://workspace/images/";
             File f = new File(uploadurl + filename);
             file.transferTo(f);
-        }else{
-
         }
         bdto.setBfile(filename);
         boardService.insertOne(bdto);
-        System.out.println("이름 : "+bdto.getName());
-        System.out.println("내용 : "+bdto.getBcontent());
-        System.out.println("파일 : "+bdto.getBfile());
         return "redirect:boardlist";
     }
 

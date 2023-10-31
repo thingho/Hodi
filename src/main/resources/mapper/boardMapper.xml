@@ -4,8 +4,8 @@
 
 <mapper namespace="com.java.demo.mapper.BoardMapper">
     <select id="selectAll" resultType="com.java.demo.dto.BoardDto" parameterType="map">
-        select * from board order by bno desc
-        <!--<if test="category == 'all'">
+        select * from board
+        <if test="category == 'all'">
             where btitle like concat('%',#{word},'%') or name like concat('%',#{word},'%')
         </if>
         <if test="category == 'btitle'">
@@ -13,7 +13,8 @@
         </if>
         <if test="category == 'name'">
             where name like concat('%',#{word},'%')
-        </if>-->
+        </if>
+        order by bno desc
     </select>
 
     <select id="selectOne" resultType="com.java.demo.dto.BoardDto">

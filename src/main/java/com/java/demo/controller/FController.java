@@ -40,6 +40,7 @@ public class FController {
             session.setAttribute("sessionId", mdto.getId());
             session.setAttribute("sessionName", mdto.getName());
             session.setAttribute("sessionGroup",mdto.getGroup_number());
+
         } else {
             model.addAttribute("loginCheck", "fail");
             return "/login";

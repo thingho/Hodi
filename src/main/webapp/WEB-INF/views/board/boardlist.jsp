@@ -8,7 +8,7 @@
             table{width:1000px; text-align: center; margin-left:auto;margin-right:auto;}
             table,th,td{border: 1px solid black; border-collapse: collapse;}
             th,td,input{width:500px; height:40px;}
-            button{width:60px;}
+            button{width:60px; height:40px;}
             select{width: 100px;}
             li{list-style-type: none; padding: 0 25px 0 0; display : flex;}
             button,a{color: blue; cursor:pointer;}
@@ -21,8 +21,8 @@
     <body>
     <script>
         function searchBtn(){
-            if($("#word").val().length<2){
-                alert("2글자 이상 입력하셔야 합니다.")
+            if($("#word").val() == ""){
+                alert("검색어를 입력해주세요.")
                 $("#word").focus();
                 return false;
             }
@@ -38,15 +38,16 @@
         <br>
     <div class="searchbar">
         <form action="/board/boardlist" name="search" method="post">
-            <select name="category" id="category">
+            <select name="category">
                 <option value="all">전체</option>
                 <option value="btitle">제목</option>
                 <option value="name">작성자</option>
             </select>
             <div>
-                <input type="text" name="word" id="word" value="${word}" placeholder="검색어를 입력해주세요.">
+                <input type="text" name="word" value="${word}" placeholder="검색어를 입력해주세요.">
             </div>
             <button type="button" onclick="searchBtn()">검색</button>
+            <button type="button" onclick="location.href='/board/boardlist'">초기화</button>
         </form>
     </div>
 

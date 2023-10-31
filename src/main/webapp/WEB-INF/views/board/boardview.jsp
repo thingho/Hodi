@@ -52,7 +52,7 @@
     </table>
     <br>
     <div style="margin-left:1300px;">
-        <button type="button" onclick="location.href='/board/boardlist'">게시판 목록</button>
+        <button type="button" onclick="location.href='/board/boardlist?category=${category}&word=${word}'">게시판 목록</button>
     </div>
     </body>
 </html>

@@ -37,9 +37,5 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void insertOne(BoardDto bdto) {
         boardMapper.insertOne(bdto);
-
-        System.out.println("이름 impl: "+bdto.getName());
-        System.out.println("내용 impl: "+bdto.getBcontent());
-        System.out.println("파일 impl: "+bdto.getBfile());
     }
 }
