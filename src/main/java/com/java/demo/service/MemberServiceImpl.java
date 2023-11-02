@@ -5,6 +5,9 @@ import com.java.demo.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 

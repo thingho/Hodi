@@ -16,6 +16,6 @@ public class MemberDto {
     private String id;
     private String pw;
     private String phone;
-    private Date date;
+    private Date birthday;
     private int group_number;
 }
