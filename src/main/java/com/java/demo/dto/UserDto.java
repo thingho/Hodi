@@ -11,6 +11,7 @@ public class UserDto {
     private int statusCode;
     private MemberDto userInfo;
 
+
     public UserDto(String status, int statusCode, MemberDto userInfo) {
         this.status = status;
         this.statusCode = statusCode;

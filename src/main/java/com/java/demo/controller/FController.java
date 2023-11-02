@@ -61,6 +61,7 @@ public class FController {
             conn = (HttpURLConnection) url.openConnection();
 
             if (conn != null) {
+
                 conn.setConnectTimeout(2000);
 
                 conn.setRequestMethod("GET");
